@@ -589,6 +589,8 @@ Mario.Character.prototype.Win = function() {
     this.World.Paused = true;
     this.WinTime = 1;
     //Enjine.Resources.PlaySound("exit");
+
+    /**/ console.log('WIN');
 };
 
 Mario.Character.prototype.Die = function() {
@@ -598,6 +600,8 @@ Mario.Character.prototype.Die = function() {
     this.DeathTime = 1;
     //Enjine.Resources.PlaySound("death");
     this.SetLarge(false, false);
+
+    /**/ console.log('DIE');
 };
 
 Mario.Character.prototype.GetFlower = function() {
