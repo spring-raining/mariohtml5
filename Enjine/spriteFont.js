@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Enjine) => {
+
 Enjine.SpriteFont = function(strings, image, letterWidth, letterHeight, letters) {
     this.Image = image;
     this.Letters = letters;
@@ -21,4 +23,6 @@ Enjine.SpriteFont.prototype.Draw = function(context, camera) {
             context.drawImage(this.Image, this.Letters[code].X, this.Letters[code].Y, this.LetterWidth, this.LetterHeight, string.X + this.LetterWidth * (i + 1), string.Y, this.LetterWidth, this.LetterHeight);
         }
     }
+};
+
 };

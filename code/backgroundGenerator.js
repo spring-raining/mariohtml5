@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.BackgroundGenerator = function(width, height, distant, type) {
     this.Width = width;
     this.Height = height;
@@ -33,20 +35,20 @@ Mario.BackgroundGenerator.prototype = {
         }
         return level;
     },
-    
+
     GenerateOverground: function(level) {
         var range = this.Distant ? 4 : 6;
         var offs = this.Distant ? 2 : 1;
         var oh = Math.floor(Math.random() * range) + offs;
         var h = Math.floor(Math.random() * range) + offs;
-        
+
         var x = 0, y = 0, h0 = 0, h1 = 0, s = 2;
         for (x = 0; x < this.Width; x++) {
             oh = h;
             while (oh === h) {
                 h = Math.floor(Math.random() * range) + offs;
             }
-            
+
             for (y = 0; y < this.Height; y++) {
                 h0 = (oh < h) ? oh : h;
                 h1 = (oh < h) ? h : oh;
@@ -76,18 +78,18 @@ Mario.BackgroundGenerator.prototype = {
             }
         }
     },
-    
+
     GenerateUnderground: function(level) {
         var x = 0, y = 0, t = 0, yy = 0;
         if (this.Distant) {
             var tt = 0;
             for (x = 0; x < this.Width; x++) {
                 if (Math.random() < 0.75) { tt = 1 - tt; }
-            
+
                 for (y = 0; y < this.Height; y++) {
                     t = tt;
                     yy = y - 2;
-                    
+
                     if (yy < 0 || yy > 4) {
                         yy = 2;
                         t = 0;
@@ -108,13 +110,13 @@ Mario.BackgroundGenerator.prototype = {
                         t = -1;
                         yy = 0;
                     }
-                    
+
                     level.SetBlock(x, y, (6 + t + yy * 8));
                 }
             }
         }
     },
-    
+
     GenerateCastle: function(level) {
         var x = 0, y = 0, t = 0, yy = 0;
         if (this.Distant) {
@@ -122,13 +124,13 @@ Mario.BackgroundGenerator.prototype = {
                 for (y = 0; y < this.Height; y++) {
                     t = x % 2;
                     yy = y - 1;
-                    
+
                     if (yy > 2 && yy < 5) {
                         yy = 2;
                     } else if (yy >= 5) {
                         yy -= 2;
                     }
-                    
+
                     if (yy < 0) {
                         t = 0;
                         yy = 5;
@@ -142,7 +144,7 @@ Mario.BackgroundGenerator.prototype = {
                         t = 0;
                         yy = 2;
                     }
-                    
+
                     level.SetBlock(x, y, (1 + t + (yy + 4) * 8));
                 }
             }
@@ -151,13 +153,13 @@ Mario.BackgroundGenerator.prototype = {
                 for (y = 0; y < this.Height; y++) {
                     t = x % 3;
                     yy = y - 1;
-                    
+
                     if (yy > 2 && yy < 5) {
                         yy = 2;
                     } else if (yy >= 5) {
                         yy -= 2;
                     }
-                    
+
                     if (yy < 0) {
                         t = 1;
                         yy = 5;
@@ -171,11 +173,13 @@ Mario.BackgroundGenerator.prototype = {
                         t = 4;
                         yy = -3;
                     }
-                    
+
                     level.SetBlock(x, y, (1 + t + (yy + 3) * 8));
                 }
             }
         }
     }
-    
+
+};
+
 };

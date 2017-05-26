@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.TitleState = function() {
     this.drawManager = null;
     this.camera = null;
@@ -85,4 +87,6 @@ Mario.TitleState.prototype.CheckForChange = function(context) {
     /**/ console.log('INIT');
     /**/ context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
     /**/
+};
+
 };

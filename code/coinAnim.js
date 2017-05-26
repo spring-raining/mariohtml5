@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.CoinAnim = function(world, x, y) {
     this.World = world;
     this.Life = 10;
@@ -28,9 +30,11 @@ Mario.CoinAnim.prototype.Move = function() {
             }
         }
     }
-    
+
     this.XPic = this.Life & 3;
     this.X += this.Xa;
     this.Y += this.Ya;
     this.Ya += 1;
+};
+
 };

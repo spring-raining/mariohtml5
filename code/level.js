@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.Tile = {
     BlockUpper: 1 << 0,
     BlockAll: 1 << 1,
@@ -13,7 +15,7 @@ Mario.Tile = {
     PickUpable: 1 << 6,
     Animated: 1 << 7,
     Behaviors: [],
-    
+
     LoadBehaviors: function() {
         var b = [];
         b[0] = 0;
@@ -74,12 +76,12 @@ Mario.Tile = {
         b[55] = 0;
         b[56] = 2;
         b[57] = 2;
-        
+
         var i = 0;
         for (i = 58; i < 128; i++) {
             b[i] = 0;
         }
-        
+
         b[128] = 2;
         b[129] = 2;
         b[130] = 2;
@@ -135,19 +137,19 @@ Mario.Tile = {
         b[180] = 1;
         b[181] = 1;
         b[182] = 1;
-        
+
         for (i = 183; i < 224; i++) {
             b[i] = 0;
         }
-        
+
         b[224] = 1;
         b[225] = 1;
         b[226] = 1;
-        
+
         for (i = 227; i < 256; i++) {
             b[i] = 0;
         }
-        
+
         this.Behaviors = b;
     }
 };
@@ -171,17 +173,17 @@ Mario.Level = function(width, height) {
     this.Height = height;
     this.ExitX = 10;
     this.ExitY = 10;
-    
+
     this.Map = [];
     this.Data = [];
     this.SpriteTemplates = [];
-    
+
     var x = 0, y = 0;
     for (x = 0; x < this.Width; x++) {
         this.Map[x] = [];
         this.Data[x] = [];
         this.SpriteTemplates[x] = [];
-        
+
         for (y = 0; y < this.Height; y++) {
             this.Map[x][y] = 0;
             this.Data[x][y] = 0;
@@ -201,7 +203,7 @@ Mario.Level.prototype = {
             }
         }
     },
-    
+
     GetBlockCapped: function(x, y) {
         if (x < 0) { x = 0; }
         if (y < 0) { y = 0; }
@@ -209,7 +211,7 @@ Mario.Level.prototype = {
         if (y >= this.Height) { y = this.Height - 1; }
         return this.Map[x][y];
     },
-    
+
     GetBlock: function(x, y) {
         if (x < 0) { x = 0; }
         if (y < 0) { return 0; }
@@ -217,7 +219,7 @@ Mario.Level.prototype = {
         if (y >= this.Height) { y = this.Height - 1; }
         return this.Map[x][y];
     },
-    
+
     SetBlock: function(x, y, block) {
         if (x < 0) { return; }
         if (y < 0) { return; }
@@ -225,7 +227,7 @@ Mario.Level.prototype = {
         if (y >= this.Height) { return; }
         this.Map[x][y] = block;
     },
-    
+
     SetBlockData: function(x, y, data) {
         if (x < 0) { return; }
         if (y < 0) { return; }
@@ -233,7 +235,7 @@ Mario.Level.prototype = {
         if (y >= this.Height) { return; }
         this.Data[x][y] = data;
     },
-    
+
     IsBlocking: function(x, y, xa, ya) {
         var block = this.GetBlock(x, y);
         var blocking = ((Mario.Tile.Behaviors[block & 0xff]) & Mario.Tile.BlockAll) > 0;
@@ -242,7 +244,7 @@ Mario.Level.prototype = {
 
         return blocking;
     },
-    
+
     GetSpriteTemplate: function(x, y) {
         if (x < 0) { return null; }
         if (y < 0) { return null; }
@@ -250,7 +252,7 @@ Mario.Level.prototype = {
         if (y >= this.Height) { return null; }
         return this.SpriteTemplates[x][y];
     },
-    
+
     SetSpriteTemplate: function(x, y, template) {
         if (x < 0) { return; }
         if (y < 0) { return; }
@@ -258,4 +260,6 @@ Mario.Level.prototype = {
         if (y >= this.Height) { return; }
         this.SpriteTemplates[x][y] = template;
     }
+};
+
 };

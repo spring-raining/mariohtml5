@@ -3,9 +3,11 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Enjine) => {
+
 Enjine.GameStateContext = function(defaultState) {
     this.State = null;
-    
+
     if (defaultState != null) {
         this.State = defaultState;
         this.State.Enter();
@@ -20,12 +22,12 @@ Enjine.GameStateContext.prototype = {
         this.State = newState;
         this.State.Enter();
     },
-    
+
     Update: function(delta) {
         this.State.CheckForChange(this);
         this.State.Update(delta);
     },
-    
+
     Draw: function(delta) {
         this.State.Draw(delta);
     }
@@ -33,7 +35,7 @@ Enjine.GameStateContext.prototype = {
 
 /**
  * Base game state class to at least ensure that all the functions exist.
- */ 
+ */
 Enjine.GameState = function() { }
 
 Enjine.GameState.prototype = {
@@ -42,4 +44,6 @@ Enjine.GameState.prototype = {
     Update: function(delta) {},
     Draw: function(context) {},
     CheckForChange: function(context) {}
+};
+
 };

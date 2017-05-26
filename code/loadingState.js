@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.LoadingState = function() {
     this.Images = [];
     this.ImagesLoaded = false;
@@ -141,4 +143,6 @@ Mario.LoadingState.prototype.CheckForChange = function(context) {
 
         context.ChangeState(new Mario.TitleState());
     }
+};
+
 };

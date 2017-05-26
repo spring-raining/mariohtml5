@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.Shell = function(world, x, y, type) {
 	this.World = world;
 	this.X = x;
@@ -306,4 +308,6 @@ Mario.Shell.prototype.Release = function(mario) {
     this.Carried = false;
     this.Facing = Mario.MarioCharacter.Facing;
     this.X += this.Facing * 8;
+};
+
 };

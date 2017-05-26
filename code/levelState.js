@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.LevelState = function(difficulty, type) {
     this.LevelDifficulty = difficulty;
     this.LevelType = type;
@@ -467,4 +469,6 @@ Mario.LevelState.prototype.CheckForChange = function(context) {
 	//		context.ChangeState(Mario.GlobalMapState);
 	//	}
 	//}
+};
+
 };

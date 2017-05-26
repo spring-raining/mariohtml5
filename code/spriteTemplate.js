@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.SpriteTemplate = function(type, winged) {
     this.Type = type;
     this.Winged = winged;
@@ -16,7 +18,7 @@ Mario.SpriteTemplate.prototype = {
         if (this.IsDead) {
             return;
         }
-        
+
         if (this.Type === Mario.Enemy.Flower) {
             this.Sprite = new Mario.FlowerEnemy(world, x * 16 + 15, y * 16 + 24);
         } else {
@@ -25,4 +27,6 @@ Mario.SpriteTemplate.prototype = {
         this.Sprite.SpriteTemplate = this;
         world.AddSprite(this.Sprite);
     }
+};
+
 };

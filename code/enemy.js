@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.Enemy = function(world, x, y, dir, type, winged) {
     this.GroundInertia = 0.89;
     this.AirInertia = 0.89;
@@ -402,3 +404,5 @@ Mario.Enemy.GreenKoopa = 1;
 Mario.Enemy.Goomba = 2;
 Mario.Enemy.Spiky = 3;
 Mario.Enemy.Flower = 4;
+
+};

@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.Particle = function(world, x, y, xa, ya, xPic, yPic) {
 	this.World = world;
 	this.X = x;
@@ -13,11 +15,11 @@ Mario.Particle = function(world, x, y, xa, ya, xPic, yPic) {
 	this.YPic = 0;
 	this.XPicO = 4;
 	this.YPicO = 4;
-	
+
 	this.PicWidth = 8;
 	this.PicHeight = 8;
 	this.Life = 10;
-	
+
 	this.Image = Enjine.Resources.Images["particles"];
 };
 
@@ -28,9 +30,11 @@ Mario.Particle.prototype.Move = function() {
 		this.World.RemoveSprite(this);
 	}
 	this.Life -= this.Delta;
-	
+
 	this.X += this.Xa;
 	this.Y += this.Ya;
 	this.Ya *= 0.95;
 	this.Ya += 3;
+};
+
 };

@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.Character = function() {
     //these are static in Notch's code... here it doesn't seem necessary
     this.Large = false;
@@ -664,4 +666,6 @@ Mario.Character.prototype.GetCoin = function() {
         this.Coins = 0;
         this.Get1Up();
     }
+};
+
 };

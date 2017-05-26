@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.BulletBill = function(world, x, y, dir) {
 	this.Image = Enjine.Resources.Images["enemies"];
 	this.World = world;
@@ -109,4 +111,6 @@ Mario.BulletBill.prototype.ShellCollideCheck = function(shell) {
         }
     }
     return false;
+};
+
 };

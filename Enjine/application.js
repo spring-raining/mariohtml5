@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Enjine) => {
+
 Enjine.Application = function() {
     this.canvas = null;
     this.timer = null;
@@ -32,4 +34,6 @@ Enjine.Application.prototype = {
 
         this.timer.Start();
     }
+};
+
 };

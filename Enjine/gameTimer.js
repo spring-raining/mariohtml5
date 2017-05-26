@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Enjine) => {
+
 Enjine.GameTimer = function() {
     this.FramesPerSecond = 1000 / 30;
 	this.LastTime = 0;
@@ -16,18 +18,20 @@ Enjine.GameTimer.prototype = {
         var self = this;
         this.IntervalFunc = setInterval(function() { self.Tick() }, this.FramesPerSecond);
     },
-    
+
     Tick: function() {
         if (this.UpdateObject != null) {
             var newTime = new Date().getTime();
     		var delta = (newTime - this.LastTime) / 1000;
     		this.LastTime = newTime;
-            
+
             this.UpdateObject.Update(delta);
         }
     },
-    
+
     Stop: function() {
         clearInterval(this.IntervalFunc);
     }
+};
+
 };

@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.MapTile = {
     Grass: 0,
     Water: 1,
@@ -660,4 +662,6 @@ Mario.MapState.prototype.CheckForChange = function(context) {
     if (this.EnterLevel) {
         context.ChangeState(new Mario.LevelState(this.LevelDifficulty, this.LevelType));
     }
+};
+
 };

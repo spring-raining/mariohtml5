@@ -3,15 +3,17 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.FireFlower = function(world, x, y) {
 	this.Width = 4;
 	this.Height = 24;
-	
+
 	this.World = world;
 	this.X = x;
 	this.Y = y;
 	this.Image = Enjine.Resources.Images["items"];
-	
+
 	this.XPicO = 8;
 	this.YPicO = 15;
 	this.XPic = 1;
@@ -19,7 +21,7 @@ Mario.FireFlower = function(world, x, y) {
 	this.Height = 12;
 	this.Facing = 1;
 	this.PicWidth = this.PicHeight = 16;
-	
+
 	this.Life = 0;
 };
 
@@ -42,4 +44,6 @@ Mario.FireFlower.prototype.Move = function() {
 		this.Life++;
 		return;
 	}
+};
+
 };

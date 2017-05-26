@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Enjine) => {
+
 Enjine.Resources = {
     Images: {},
     Sounds: {},
@@ -116,4 +118,6 @@ Enjine.Resources = {
     //	this.currentTime = -1;
     //	this.play();
     //}
+};
+
 };

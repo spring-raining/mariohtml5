@@ -4,6 +4,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+module.exports = (Mario, Enjine) => {
+
 Mario.NotchSprite = function(image) {
     this.XOld = 0; this.YOld = 0;
     this.X = 0; this.Y = 0;
@@ -26,10 +28,10 @@ Mario.NotchSprite.prototype.Draw = function(context, camera) {
     if (!this.Visible) {
         return;
     }
-    
+
     xPixel = ((this.XOld + (this.X - this.XOld) * this.Delta) | 0) - this.XPicO;
     yPixel = ((this.YOld + (this.Y - this.YOld) * this.Delta) | 0) - this.YPicO;
-    
+
     context.save();
     context.scale(this.XFlip ? -1 : 1, this.YFlip ? -1 : 1);
     context.translate(this.XFlip ? -320 : 0, this.YFlip ? -240 : 0);
@@ -76,4 +78,6 @@ Mario.NotchSprite.prototype.ShellCollideCheck = function(shell) {
 
 Mario.NotchSprite.prototype.FireballCollideCheck = function(fireball) {
     return false;
+};
+
 };

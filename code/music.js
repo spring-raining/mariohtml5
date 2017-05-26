@@ -2,6 +2,8 @@
 * using cross platform MIDI library MIDI.js http://www.midijs.net/
 */
 
+module.exports = (Mario, Enjine) => {
+
 //var midifiles = {
 //	"title" : "midi/title.mid",
 //	"map" : "midi/map.mid",
@@ -46,3 +48,5 @@
 //Mario.StopMusic = function() {
 //	MIDIjs.stop();
 //};
+
+};
