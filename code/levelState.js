@@ -39,13 +39,13 @@ Mario.LevelState.prototype.Enter = function() {
     this.Level = levelGenerator.CreateLevel(this.LevelType, this.LevelDifficulty);
 
     //play music here
-    if (this.LevelType === Mario.LevelType.Overground) {
-    	Mario.PlayOvergroundMusic();
-    } else if (this.LevelType === Mario.LevelType.Underground) {
-    	Mario.PlayUndergroundMusic();
-    } else if (this.LevelType === Mario.LevelType.Castle) {
-    	Mario.PlayCastleMusic();
-    }
+    //if (this.LevelType === Mario.LevelType.Overground) {
+    //	Mario.PlayOvergroundMusic();
+    //} else if (this.LevelType === Mario.LevelType.Underground) {
+    //	Mario.PlayUndergroundMusic();
+    //} else if (this.LevelType === Mario.LevelType.Castle) {
+    //	Mario.PlayCastleMusic();
+    //}
 
     this.Paused = false;
     this.Layer = new Mario.LevelRenderer(this.Level, 320, 240);
@@ -198,7 +198,7 @@ Mario.LevelState.prototype.Update = function(delta) {
         }
 
         if (hasShotCannon) {
-            Enjine.Resources.PlaySound("cannon");
+            //Enjine.Resources.PlaySound("cannon");
         }
 
         for (i = 0; i < this.Sprites.Objects.length; i++) {
@@ -308,7 +308,7 @@ Mario.LevelState.prototype.Draw = function(context) {
     }
 
     if (Mario.MarioCharacter.WinTime > 0) {
-    	Mario.StopMusic();
+    	//Mario.StopMusic();
         t = Mario.MarioCharacter.WinTime + this.Delta;
         t = t * t * 0.2;
 
@@ -322,7 +322,7 @@ Mario.LevelState.prototype.Draw = function(context) {
     }
 
     if (Mario.MarioCharacter.DeathTime > 0) {
-    	Mario.StopMusic();
+    	//Mario.StopMusic();
         t = Mario.MarioCharacter.DeathTime + this.Delta;
         t = t * t * 0.1;
 
@@ -417,7 +417,7 @@ Mario.LevelState.prototype.Bump = function(x, y, canBreakBricks) {
         this.Level.SetBlockData(x, y, 4);
 
         if ((Mario.Tile.Behaviors[block & 0xff] & Mario.Tile.Special) > 0) {
-            Enjine.Resources.PlaySound("sprout");
+            //Enjine.Resources.PlaySound("sprout");
             if (!Mario.MarioCharacter.Large) {
                 this.AddSprite(new Mario.Mushroom(this, x * 16 + 8, y * 16 + 8));
             } else {
@@ -425,7 +425,7 @@ Mario.LevelState.prototype.Bump = function(x, y, canBreakBricks) {
             }
         } else {
             Mario.MarioCharacter.GetCoin();
-            Enjine.Resources.PlaySound("coin");
+            //Enjine.Resources.PlaySound("coin");
             this.AddSprite(new Mario.CoinAnim(this, x, y));
         }
     }
@@ -433,7 +433,7 @@ Mario.LevelState.prototype.Bump = function(x, y, canBreakBricks) {
     if ((Mario.Tile.Behaviors[block & 0xff] & Mario.Tile.Breakable) > 0) {
         this.BumpInto(x, y - 1);
         if (canBreakBricks) {
-            Enjine.Resources.PlaySound("breakblock");
+            //Enjine.Resources.PlaySound("breakblock");
             this.Level.SetBlock(x, y, 0);
             for (xx = 0; xx < 2; xx++) {
                 for (yy = 0; yy < 2; yy++) {
@@ -448,7 +448,7 @@ Mario.LevelState.prototype.BumpInto = function(x, y) {
     var block = this.Level.GetBlock(x, y), i = 0;
     if (((Mario.Tile.Behaviors[block & 0xff]) & Mario.Tile.PickUpable) > 0) {
         Mario.MarioCharacter.GetCoin();
-        Enjine.Resources.PlaySound("coin");
+        //Enjine.Resources.PlaySound("coin");
         this.Level.SetBlock(x, y, 0);
         this.AddSprite(new Mario.CoinAnim(x, y + 1));
     }
