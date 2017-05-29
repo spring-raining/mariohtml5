@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node serv/main.js",
+    "start:observer": "browser-sync start --server -f out/canvas.png",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/spring-raining/mariohtml5#readme",
   "dependencies": {
+    "browser-sync": "^2.18.12",
     "canvas": "^1.6.5",
     "koa": "^2.2.0",
     "koa-router": "^7.2.0"

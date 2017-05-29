@@ -2,17 +2,39 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const Environment = require('./environment');
 
-let environment = null;
+const environment = Environment();
+let gameApp = null;
 
 const app = new Koa();
 
 const router = new Router();
 
 router.post('/init', async (ctx) => {
-  environment = Environment();
   const { Enjine, Mario } = environment;
-  new Enjine.Application().Initialize(new Mario.LoadingState(), 320, 240);
+  gameApp = new Enjine.Application();
+  gameApp.Initialize(new Mario.LoadingState(), 320, 240);
   ctx.body = 'Init';
+});
+
+router.post('/action', async (ctx) => {
+  if (!gameApp) {
+    ctx.status = 400;
+  }
+  else {
+    gameApp.timer.Tick();
+    let fs = require('fs');
+    fs.writeFileSync('out/canvas.png', gameApp.canvas.Canvas.toBuffer());
+    ctx.body = gameApp.canvas.Canvas.toDataURL();
+  }
+});
+
+router.get('/canvas', async (ctx) => {
+  if (!gameApp) {
+    ctx.status = 400;
+  }
+  else {
+    ctx.body = gameApp.canvas.Canvas.toDataURL();
+  }
 });
 
 app.use(router.routes());
