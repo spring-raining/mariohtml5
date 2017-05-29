@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Koa = require('koa');
 const Router = require('koa-router');
 const Environment = require('./environment');
@@ -21,8 +22,30 @@ router.post('/action', async (ctx) => {
     ctx.status = 400;
   }
   else {
+    const { Enjine, Mario } = environment;
+    const keysString = ctx.query['keys'] || '';
+    const keys = keysString.toLowerCase().split(',');
+    Enjine.KeyboardInput.AllKeyUp();
+    if (keys.indexOf('a') >= 0) {
+      Enjine.KeyboardInput.KeyDown(Enjine.Keys.A);
+    }
+    if (keys.indexOf('s') >= 0) {
+      Enjine.KeyboardInput.KeyDown(Enjine.Keys.S);
+    }
+    if (keys.indexOf('left') >= 0) {
+      Enjine.KeyboardInput.KeyDown(Enjine.Keys.Left);
+    }
+    if (keys.indexOf('up') >= 0) {
+      Enjine.KeyboardInput.KeyDown(Enjine.Keys.Up);
+    }
+    if (keys.indexOf('right') >= 0) {
+      Enjine.KeyboardInput.KeyDown(Enjine.Keys.Right);
+    }
+    if (keys.indexOf('down') >= 0) {
+      Enjine.KeyboardInput.KeyDown(Enjine.Keys.Down);
+    }
+
     gameApp.timer.Tick();
-    let fs = require('fs');
     fs.writeFileSync('out/canvas.png', gameApp.canvas.Canvas.toBuffer());
     ctx.body = gameApp.canvas.Canvas.toDataURL();
   }

@@ -56,14 +56,23 @@ Enjine.KeyboardInput = {
         return false;
     },
 
-    KeyDownEvent: function(event) {
-        this.Pressed[event.keyCode] = true;
-	this.PreventScrolling(event);
+    //KeyDownEvent: function(event) {
+    //    this.Pressed[event.keyCode] = true;
+    //    this.PreventScrolling(event);
+    //},
+    KeyDown: function(keyCode) {
+        this.Pressed[keyCode] = true;
     },
 
-    KeyUpEvent: function(event) {
-        this.Pressed[event.keyCode] = false;
-	this.PreventScrolling(event);
+    //KeyUpEvent: function(event) {
+    //    this.Pressed[event.keyCode] = false;
+    //    this.PreventScrolling(event);
+    //},
+    KeyUp: function(keyCode) {
+        this.Pressed[keyCode] = false;
+    },
+    AllKeyUp: function() {
+        this.Pressed = new Array();
     },
 
     PreventScrolling: function(event) {
