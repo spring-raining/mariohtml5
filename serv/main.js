@@ -5,6 +5,7 @@ const Environment = require('./environment');
 
 const environment = Environment();
 let gameApp = null;
+let tick = null;
 
 const app = new Koa();
 
@@ -14,6 +15,7 @@ router.post('/init', async (ctx) => {
   const { Enjine, Mario } = environment;
   gameApp = new Enjine.Application();
   gameApp.Initialize(new Mario.LoadingState(), 320, 240);
+  tick = 0;
   ctx.body = 'Init';
 });
 
@@ -44,10 +46,19 @@ router.post('/action', async (ctx) => {
     if (keys.indexOf('down') >= 0) {
       Enjine.KeyboardInput.KeyDown(Enjine.Keys.Down);
     }
-
     gameApp.timer.Tick();
+    tick += 1;
+
+    const death = Mario.MarioCharacter? Mario.MarioCharacter.DeathTime > 0 : false;
+    const win = Mario.MarioCharacter? Mario.MarioCharacter.WinTime > 0 : false;
+
     fs.writeFileSync('out/canvas.png', gameApp.canvas.Canvas.toBuffer());
-    ctx.body = gameApp.canvas.Canvas.toDataURL();
+    ctx.body = {
+      tick,
+      death,
+      win,
+      image: gameApp.canvas.Canvas.toDataURL(),
+    };
   }
 });
 
