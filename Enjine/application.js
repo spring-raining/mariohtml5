@@ -27,7 +27,8 @@ Enjine.Application.prototype = {
         this.canvas = new Enjine.GameCanvas();
         this.timer = new Enjine.GameTimer();
         Enjine.KeyboardInput.Initialize();
-        this.canvas.Initialize("canvas", resWidth, resHeight);
+        //this.canvas.Initialize("canvas", resWidth, resHeight);
+        this.canvas.Initialize(resWidth, resHeight);
         this.timer.UpdateObject = this;
 
         this.stateContext = new Enjine.GameStateContext(defaultState);

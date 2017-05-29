@@ -3,6 +3,8 @@
 	Code by Rob Kleffner, 2011
 */
 
+const Canvas = require('canvas');
+
 module.exports = (Enjine) => {
 
 Enjine.GameCanvas = function() {
@@ -13,14 +15,20 @@ Enjine.GameCanvas = function() {
 };
 
 Enjine.GameCanvas.prototype = {
-    Initialize: function(canvasId, resWidth, resHeight) {
-		this.Canvas = document.getElementById(canvasId);
-		this.Context2D = this.Canvas.getContext("2d");
-		this.BackBuffer = document.createElement("canvas");
-		this.BackBuffer.width = resWidth;
-		this.BackBuffer.height = resHeight;
-		this.BackBufferContext2D = this.BackBuffer.getContext("2d");
-	},
+    //Initialize: function(canvasId, resWidth, resHeight) {
+    //    this.Canvas = document.getElementById(canvasId);
+    //    this.Context2D = this.Canvas.getContext("2d");
+    //    this.BackBuffer = document.createElement("canvas");
+    //    this.BackBuffer.width = resWidth;
+    //    this.BackBuffer.height = resHeight;
+    //    this.BackBufferContext2D = this.BackBuffer.getContext("2d");
+    //},
+    Initialize: function(resWidth, resHeight) {
+        this.Canvas = new Canvas(resWidth, resHeight);
+        this.Context2D = this.Canvas.getContext('2d');
+        this.BackBuffer = new Canvas(resWidth, resHeight);
+        this.BackBufferContext2D = this.BackBuffer.getContext('2d');
+    },
 
     BeginDraw: function() {
         this.BackBufferContext2D.clearRect(0, 0, this.BackBuffer.width, this.BackBuffer.height);

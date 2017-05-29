@@ -41,10 +41,13 @@ Enjine.Keys = {
 Enjine.KeyboardInput = {
     Pressed: new Array(),
 
+    //Initialize: function() {
+    //    var self = this;
+    //    document.onkeydown = function(event) { self.KeyDownEvent(event); }
+    //    document.onkeyup = function(event) { self.KeyUpEvent(event); }
+    //},
     Initialize: function() {
-        var self = this;
-        document.onkeydown = function(event) { self.KeyDownEvent(event); }
-        document.onkeyup = function(event) { self.KeyUpEvent(event); }
+
     },
 
     IsKeyDown: function(key) {

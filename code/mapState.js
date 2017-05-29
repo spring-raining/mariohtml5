@@ -3,6 +3,9 @@
 	Code by Rob Kleffner, 2011
 */
 
+const Canvas = require('canvas');
+const Image = Canvas.Image;
+
 module.exports = (Mario, Enjine) => {
 
 Mario.MapTile = {
@@ -25,7 +28,8 @@ Mario.MapState = function() {
     this.Farthest = 0;
     this.XFarthestCap = 0;
     this.YFarthestCap = 0;
-    this.MapImage = document.createElement("canvas");
+    //this.MapImage = document.createElement("canvas");
+    this.MapImage = new Canvas();
     this.MapImage.width = 320;
     this.MapImage.height = 240;
     this.MapContext = this.MapImage.getContext("2d");

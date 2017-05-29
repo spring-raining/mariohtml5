@@ -3,6 +3,10 @@
 	Code by Rob Kleffner, 2011
 */
 
+const fs = require('fs');
+const Canvas = require('canvas');
+const Image = Canvas.Image;
+
 module.exports = (Enjine) => {
 
 Enjine.Resources = {
@@ -17,21 +21,37 @@ Enjine.Resources = {
 
     //***********************/
     //Images
+    //AddImage: function(name, src) {
+    //    var tempImage = new Image();
+    //    this.Images[name] = tempImage;
+    //    tempImage.src = src;
+    //    return this;
+    //},
     AddImage: function(name, src) {
-        var tempImage = new Image();
-		this.Images[name] = tempImage;
-        tempImage.src = src;
+        const data = fs.readFileSync(__dirname + '/../' + name);
+        const tempImage = new Image();
+        this.Images[name] = tempImage;
+        tempImage.src = data;
         return this;
-	},
+    },
 
-	AddImages: function(array) {
-		for (var i = 0; i < array.length; i++) {
-            var tempImage = new Image();
+    //AddImages: function(array) {
+    //    for (var i = 0; i < array.length; i++) {
+    //        var tempImage = new Image();
+    //        this.Images[array[i].name] = tempImage;
+    //        tempImage.src = array[i].src;
+    //    }
+    //    return this;
+    //},
+    AddImages: function(array) {
+        for (var i = 0; i < array.length; i++) {
+            const data = fs.readFileSync(__dirname + '/../' + array[i].src);
+            const tempImage = new Image();
             this.Images[array[i].name] = tempImage;
-            tempImage.src = array[i].src;
+            tempImage.src = data;
         }
         return this;
-	},
+    },
 
 	ClearImages: function() {
 		delete this.Images;

@@ -20,6 +20,7 @@ Enjine.GameTimer.prototype = {
     },
 
     Tick: function() {
+        console.log(this.LastTime);
         if (this.UpdateObject != null) {
             var newTime = new Date().getTime();
     		var delta = (newTime - this.LastTime) / 1000;
