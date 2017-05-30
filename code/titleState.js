@@ -85,7 +85,7 @@ Mario.TitleState.prototype.CheckForChange = function(context) {
     /**/
     /**/ // Jump to LevelState directly
     /**/ console.log('INIT');
-    /**/ context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
+    /**/ context.ChangeState(new Mario.LevelState(0, Mario.LevelType.Overground));
     /**/
 };
 
