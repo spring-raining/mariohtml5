@@ -1,6 +1,9 @@
 node_modules/
 out/
+!out/.gitkeep
 
 __pycache__/
 *.py[cod]
 *$py.class
+
+.vscode/
