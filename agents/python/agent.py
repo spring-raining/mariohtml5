@@ -1,5 +1,6 @@
 import base64
 from io import BytesIO
+import os
 
 import numpy as np
 from PIL import Image
@@ -30,7 +31,13 @@ action_keys = [
 
 class Agent:
 
-    game_url = 'http://127.0.0.1:6000'
+    game_host = os.environ.get('MARIOHTML5_SERV_HOST')
+    game_port = os.environ.get('MARIOHTML5_SERV_PORT')
+    if not game_host:
+        game_host = '127.0.0.1'
+    if not game_port:
+        game_port = '6000'
+    game_url = 'http://{host}:{port}'.format(host=game_host, port=game_port)
 
     def init(self):
         self.on_init()
